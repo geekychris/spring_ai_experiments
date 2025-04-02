@@ -8,3 +8,9 @@ GET http://localhost:8080/ai/embedding
 
 ### Get
 GET http://localhost:8080/ai/chat
+
+### Get
+GET http://localhost:8080/ai/chatjson
+
+### Get
+GET http://localhost:8080/ai/chatvector?message="evacuations"

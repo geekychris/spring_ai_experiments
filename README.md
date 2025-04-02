@@ -44,3 +44,8 @@ https://docs.spring.io/spring-ai/reference/api/embeddings/ollama-embeddings.html
 Embeddings demo:
 
 https://github.com/tzolov/spring-ai-ollama-huggingface-demo/blob/main/src/main/java/springai/example/ollamahf/SpringAiOllamaHuggingFaceApplication.java
+
+
+vector model
+
+https://github.com/tzolov/spring-ai-cli-chatbot/blob/main/src/main/java/com/demo/rag/Application.java
