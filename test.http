@@ -1,0 +1,10 @@
+### Get
+GET http://localhost:8080/books/search-by-author?author=Charles Dickins
+
+
+### Get
+GET http://localhost:8080/ai/embedding
+
+
+### Get
+GET http://localhost:8080/ai/chat
