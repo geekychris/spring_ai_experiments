@@ -1,5 +1,6 @@
 package com.hitorro.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.hitorro.dao.Author;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.convert.support.DefaultConversionService;
 import org.springframework.core.io.Resource;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +28,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3001")
 public class EmbeddingController {
 
     private final EmbeddingModel embeddingModel;
@@ -62,7 +65,7 @@ public class EmbeddingController {
 
 
 
-    @GetMapping("/ai/chat")
+    @GetMapping("/ai/chatvector")
     public Author chat(@RequestParam(value = "message", defaultValue = "charles dickens") String author) {
 
         String promptMessage = """
@@ -73,7 +76,7 @@ public class EmbeddingController {
                 {format}
                 """;
 
-        String format = format = "json";
+        String format = "json";
 
         PromptTemplate promptTemplate = new PromptTemplate(promptMessage, Map.of("author",author,"format", format));
         Prompt prompt = promptTemplate.create();
@@ -81,7 +84,7 @@ public class EmbeddingController {
         return a;
     }
 
-    @GetMapping("/ai/chatvector")
+    @GetMapping("/ai/chatvector2")
     public String chatVector(@RequestParam(value = "message", defaultValue = "charles dickens") String value) {
 
 
@@ -94,9 +97,11 @@ public class EmbeddingController {
                         .call()
                         .content());
 
-        return vectorChatClient.prompt(value) // Get the user input
+        String foo =  vectorChatClient.prompt(value) // Get the user input
                 .call()
                 .content();
+
+        return foo;
     }
 
 
@@ -125,6 +130,18 @@ public class EmbeddingController {
         Prompt prompt = promptTemplate.create();
         String  result = chatClient.prompt(prompt).call().content();
         //String res =  chatClient.prompt(prompt).call().content();
+        //return "{ \"key\": \"" +result + "\"";
         return result;
+    }
+
+    /**
+     * Rest endpoint that given an author finds top three pieces of work, translates to german
+     * and returns as an array of json nodes where the key is author, name is the book name and description is
+     * a description of the book.
+     * @param author
+     * @return
+     */
+    public JsonNode getDescription (String author) {
+            return null;
     }
 }

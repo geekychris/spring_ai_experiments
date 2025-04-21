@@ -13,4 +13,6 @@ GET http://localhost:8080/ai/chat
 GET http://localhost:8080/ai/chatjson
 
 ### Get
-GET http://localhost:8080/ai/chatvector?message="evacuations"
+GET http://localhost:9999/ai/chatvector2?message="building destruction"
+
+
