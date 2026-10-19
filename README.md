@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.png" alt="Spring Ai Experiments logo" width="180">
+</p>
+
 # Simple spring ai experiments
 
 ## Overview
